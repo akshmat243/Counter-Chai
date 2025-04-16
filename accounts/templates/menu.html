@@ -1,0 +1,21 @@
+{% if products is not None %}
+{%load static %}
+<link rel="stylesheet" href="{% static 'css/teacounter.css' %}">
+<div class="container">
+    <h2>Menu</h2>
+    <div class="features">
+        {%for product in products %}
+            {% if product.user == request.user %}
+                <div class="feature-card">
+                    <img src="{{product.image.url}}" alt="no photo">
+                    <h3>{{product.name}}</h3>
+                    <p>{{product.detail}}</p>
+                    <button>Price -- {{product.price}}</button>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% else %}
+<p>There are no products</p>
+{% endif %}
